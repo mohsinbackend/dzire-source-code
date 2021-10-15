@@ -1,0 +1,182 @@
+<%- include ../layout/header %>
+
+
+
+<!-- Middle Content Start -->
+<div class="vd_content-wrapper">
+  <div class="vd_container">
+    <div class="vd_content clearfix">
+      <div class="vd_head-section clearfix">
+        <div class="vd_panel-header">
+          <ul class="breadcrumb">
+            <li><a href="index.php">Dashboard</a> </li>
+            <li class="active">Listing Gallery</li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- vd_head-section -->
+
+      <div class="vd_title-section clearfix">
+        <div class="vd_panel-header">
+          <h1>Gallery</h1>
+          <div class="vd_panel-menu  hidden-xs">
+
+            <!-- menu -->
+          </div>
+
+
+
+          <!-- vd_panel-menu -->
+        </div>
+        <!-- vd_panel-header -->
+      </div>
+      <!-- vd_title-section -->
+
+
+
+
+
+      <!-- Begin AlertMgs -->
+
+      <%
+var flash = getMessages();
+if(flash.info){ %>
+
+
+      <div class="alert alert-info">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+        <strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+      </div>
+
+      <% }else if(flash.error){ %>
+
+      <div class="alert alert-danger">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+        <strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a>
+      </div>
+
+      <% }else if(flash.success){ %>
+
+      <div class="alert alert-success">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+        <strong>Success : </strong>
+        <a href="#" class="alert-link"><%= flash.success %></a>.
+      </div>
+
+      <% } %>
+      <!-- Begin AlertMgs -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Begin Content -->
+
+      <div class="vd_content-section clearfix">
+         
+        <!--         
+        <ul id="filters" class="nav nav-pills">
+          <li class="active"><a  href="#photos-all" data-filter="*">All</a></li>
+          <% categories.forEach( category => { %>  
+            <li><a  href="#photos-<%= category.id %>" data-filter=".filter-<%= category.id %>"><%= category.name %></a></li> 
+          <% }) %>  
+        </ul>
+        -->
+        
+        <br/>
+       
+        <div class="isotope js-isotope vd_gallery">
+
+          <% images.forEach( image => { %>  
+          <div class="gallery-item width1 filter-all"> 
+            <a href="<%= image.url %>" data-rel="prettyPhoto[1]"> 
+              <img alt="<%= image.name %>" src="<%= image.url %>">
+            <div class="bg-cover"></div>
+            </a>
+            <div class="vd_info">
+              <h3 class="mgbt-xs-15"><span class="font-semibold"><%= image.name %></span> <%= image.category_name %></h3>
+                <a class="vd_bg-green vd_white mgr-10 btn vd_round-btn btn-xs" role="button" href="<%= image.url %>"  data-rel="prettyPhoto[1]"><i class="fa fa-search"></i></a> 
+                <a class="vd_bg-green vd_white mgr-10 btn vd_round-btn btn-xs" role="button" href="#"><i class="fa fa-thumbs-up"></i></a> 
+                <a class="vd_bg-green vd_white mgr-10 btn vd_round-btn btn-xs" role="button" href="#"><i class="fa fa-comments"></i></a> 
+            </div>
+          </div>
+          <% }) %>
+
+        </div>
+        <div class="clearfix"></div>
+        <br/>
+        <br/>
+      </div>
+      <!-- .vd_content-section -->
+
+
+      <!-- End Content -->
+
+    </div>
+    <!-- .vd_content -->
+  </div>
+  <!-- .vd_container -->
+</div>
+<!-- .vd_content-wrapper -->
+
+<!-- Middle Content End -->
+
+</div>
+<!-- .container -->
+</div>
+<!-- .content -->
+
+
+
+<!-- Specific Page Scripts Put Here -->
+<!-- Placed at the end of the document so the pages load faster --> 
+<script type="text/javascript" src="url+'/assets/js/jquery.js'"></script> 
+<script type="text/javascript" language="javascript" src="<%= url+'/assets/plugins/isotope/isotope.pkgd.min.js' %>"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+    //"use strict";	
+  
+  // init Isotope
+  var $container = $('.isotope').isotope({
+    itemSelector: '.gallery-item',
+    layoutMode: 'fitRows'
+  });
+
+
+  // bind filter button click
+  $('#filters').on( 'click', 'a', function() 
+  {
+    var filterValue = $( this ).attr('data-filter');
+	  $('#filters li').removeClass('active');
+	  $(this).parent().addClass('active');	
+    $container.isotope({ filter: filterValue });
+  
+  });
+
+	
+});
+</script>
+<!-- Specific Page Scripts END -->
+
+
+<%- include ../layout/footer %>
+
+

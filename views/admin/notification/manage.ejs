@@ -1,0 +1,231 @@
+<%- include ../layout/header %>
+
+
+
+<!-- Middle Content Start -->
+<div class="vd_content-wrapper">
+  <div class="vd_container">
+    <div class="vd_content clearfix">
+      <div class="vd_head-section clearfix">
+        <div class="vd_panel-header">
+          <ul class="breadcrumb">
+            <li><a href="/admin">Dashboard</a> </li>
+            <li class="active">User List</li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- vd_head-section -->
+
+      <div class="vd_title-section clearfix">
+        <div class="vd_panel-header">
+          <h1>User List</h1>
+          <div class="vd_panel-menu  hidden-xs">
+
+            <!-- menu -->
+          </div>
+
+
+
+          <!-- vd_panel-menu -->
+        </div>
+        <!-- vd_panel-header -->
+      </div>
+      <!-- vd_title-section -->
+
+
+
+
+
+      <!-- Begin AlertMgs -->
+
+      <%
+var flash = getMessages();
+if(flash.info){ %>
+
+
+      <div class="alert alert-info">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+        <strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+      </div>
+
+      <% }else if(flash.error){ %>
+
+      <div class="alert alert-danger">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+        <strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a>
+      </div>
+
+      <% }else if(flash.success){ %>
+
+      <div class="alert alert-success">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+        <strong>Success : </strong>
+        <a href="#" class="alert-link"><%= flash.success %></a>.
+      </div>
+
+      <% } %>
+      <!-- Begin AlertMgs -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Begin Content -->
+
+      <div class="vd_content-section clearfix">
+        <form action="/admin/notification/send" method="POST"  class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                  
+        <div class="row">
+          <div class="col-md-12">
+            <a href="/admin/notification/sent-logs" style="float:right;" class="btn vd_bg-green vd_white">Sent Logs</a><br>
+            <br>
+            <div class="panel widget">
+              <div class="panel-heading vd_bg-grey">
+                <h3 class="panel-title">
+                  <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span> Manage Notification </h3>
+              </div>
+              <div class="panel-body">
+                <!-- <form action="/admin/notification/send" method="POST"  class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                   -->
+                  <div class="form-group">
+                      <div class="col-md-12">          
+                        <label class="control-label  col-sm-2">Title <span class="vd_red">*</span></label>
+                        <% if(flash.title_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.title_err %></small>  <% } %>
+                        <div id="first-name-input-wrapper" class="controls col-sm-9">
+                          <input name="title" value="<% if(flash.title){%><%= flash.title %><%}%>" type="text" placeholder="Title" class="width-60 required"  id="EnInput" required="">
+                        </div>
+                      </div>
+                  </div> 
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label class="control-label  col-sm-2">Body <span class="vd_red">*</span></label>
+                      <div id="first-name-input-wrapper" class="controls col-sm-6">
+                        <% if(flash.body_err){ %><small style="color:red;"><%= flash.body_err %></small>  <% } %>  
+                        <textarea name="body"   placeholder="Body" rows="5" class="width-100 required"  ><%if(flash.body){%><%= flash.body%><%}%></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label>Select All </label>
+                  
+                      <input name="selectall" value='1' id='checkedSelectall' type='checkbox'  />
+                      <!-- <input name="selectall" value='0' id='uncheckSelectall' type='hidden' /> -->
+                    
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-success pull-right" type="submit"> Submit</button>
+                    </div>
+                  </div>
+              <!-- </form> -->
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-12">
+              <% if(flash.users_err){ %><small style="color:red;"><%= flash.users_err %></small>  <% } %>
+           
+              <div class="panel widget">
+                <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title">
+                    <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span> User List   
+                   </h3>
+                </div>
+                <div class="panel-body  table-responsive">
+                  <table id="myTable" class="table table-bordered datatable">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Id</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>OS</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <% users.forEach( user => { %>
+                      <tr id="tr-<%= user.id %>">
+                        <td>
+                          <input value="<%= user.id %>" name="users" type="checkbox">
+                        </td>
+                        <td>
+                          <%= user.id %>
+                        </td>
+                        <td><img src="<%= user.image_url %>" alt="NoLoaded" height="42" width="42"></td>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.os_name %></td>
+                        <td class="center">
+                          <% if(user.status=='1') { %>
+                          <span class="label label-success">Active</span>
+                          <% } else { %>
+                          <span class="label label-danger">Deactive</span>
+                          <% } %>
+                        </td>
+                      </tr>
+                      <% }) %>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Panel Widget -->
+            </div>
+            <!-- col-md-12 -->
+          </div>
+        </form>
+
+
+
+
+        </div>
+        <!-- row -->
+
+      </div>
+
+
+      <!-- End Content -->
+
+    </div>
+    <!-- .vd_content -->
+  </div>
+  <!-- .vd_container -->
+
+<!-- .vd_content-wrapper -->
+
+<!-- Middle Content End -->
+
+</div>
+<!-- .container -->
+</div>
+<!-- .content -->
+
+
+
+<%- include ../layout/footer %>
+
+
+<script>
+  $(document).ready(function () {
+    $('#myTable').DataTable({ "pagingType": "full_numbers","order": [[ 0, "desc" ]]});
+  });
+</script>

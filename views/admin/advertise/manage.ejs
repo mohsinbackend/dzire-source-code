@@ -1,0 +1,262 @@
+<%- include ../layout/header %> 
+<style>
+  .ad-img{
+    height: 256px;
+width: 76%;
+object-fit: cover;
+  }
+
+  .fileinput{
+    margin-top: 10px;
+    width: 79% !important;
+
+  }
+
+  .mt-3{
+    margin-top: 9px;
+  }
+</style>
+
+
+    <!-- Middle Content Start -->
+    
+    <div class="vd_content-wrapper">
+        <div class="vd_container">
+          <div class="vd_content clearfix">
+            <div class="vd_head-section clearfix">
+              <div class="vd_panel-header">
+                <ul class="breadcrumb">
+                  <li><a href="/admin">Dashboard</a> </li>
+                  <li class="active">Manage Advertise</li>
+                </ul>
+   
+              </div>
+            </div>
+            <!-- vd_head-section -->
+            
+            <div class="vd_title-section clearfix">
+              <div class="vd_panel-header">
+                <h1>Manage Advertise</h1>
+                <!-- <small class="subtitle">Default dashboard for multipurpose demonstration</small> -->
+                <div class="vd_panel-menu  hidden-xs">
+    <!-- menu --> 
+  </div>
+  
+  
+  
+  <!-- vd_panel-menu --> 
+              </div>
+              <!-- vd_panel-header --> 
+            </div>
+            <!-- vd_title-section -->
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+            <!-- Begin Content -->
+  
+              <div class="vd_content-section clearfix">
+              <div class="panel widget light-widget">
+                <div class="panel-heading no-title"> </div>
+                <div class="panel-body">
+                  <h2 class="mgbt-xs-20">Manage Advertise Form</h2>
+
+
+                
+                    <!-- Begin AlertMgs -->
+                      
+                    <%
+                    var flash = getMessages();
+                    if(flash.info){ %>
+
+                      
+                      <div class="alert alert-info"> 
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+                        <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+                        <strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+                      </div>
+
+                    <% }else if(flash.error){ %>
+
+                      <div class="alert alert-danger"> 
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+                        <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+                        <strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a> 
+                      </div>
+
+                    <% }else if(flash.success){ %>
+
+                      <div class="alert alert-success"> 
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+                        <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+                        <strong>Success : </strong>  
+                        <a href="#" class="alert-link"><%= flash.success %></a>. 
+                      </div>
+
+                    <% } %>
+                    <!-- End AlertMgs -->
+
+
+
+
+                  <form action="/admin/advertise/manage-submit" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <img class="ad-img" src="<%= advertise.dashboard1 %>" />
+                          <label class="control-label  col-sm-2">Dashboard1 <span class="vd_red">*</span></label>
+                          <div id="first-name-input-wrapper" class="controls col-sm-9">
+                            <% if(flash.dashboard1){ %><small style="color:red;"><%= flash.dashboard1 %></small>  <% } %>
+                            <input class="fileinput pull-right" name="dashboard1" type="file" id="ImageInput" placeholder="John" class="width-60 required"   required="">
+                          </div>
+                          <div class="col-sm-3">
+                            <button class="btn vd_bg-green vd_white mt-3" type="submit"  name="btn_dashboard1">Change</button>
+                          </div>
+                         
+
+                        </div>
+                      </div>        
+                  </form>
+                  
+                <br/><br/>
+
+                  
+                <form action="/admin/advertise/manage-submit" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <img class="ad-img"  src="<%= advertise.dashboard2 %>" />
+                        <label class="control-label  col-sm-2">Dashboard2 <span class="vd_red">*</span></label>
+                        <div id="first-name-input-wrapper" class="controls col-sm-9">
+                          <% if(flash.dashboard2){ %><small style="color:red;"><%= flash.dashboard2 %></small>  <% } %>
+                          <input class="fileinput pull-right" name="dashboard2" type="file" >
+                        </div>
+                        <div class="col-sm-3">
+                          <button class="btn vd_bg-green vd_white mt-3" type="submit"  name="btn_dashboard2">Change</button>
+                        </div>
+                      </div>
+                    </div>        
+                </form>
+
+
+                
+                <br/><br/>
+                
+                  
+              <form action="/admin/advertise/manage-submit" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <img class="ad-img"  src="<%= advertise.skipad1 %>" />
+                      <label class="control-label  col-sm-2">Skipad1 <span class="vd_red">*</span></label>
+                      <div id="first-name-input-wrapper" class="controls col-sm-9">
+                        <% if(flash.skipad1){ %><small style="color:red;"><%= flash.skipad1 %></small>  <% } %>
+                        <input class="fileinput pull-right" name="skipad1" type="file" >
+                      </div>
+                      <div class="col-sm-3">
+                        <button class="btn vd_bg-green vd_white mt-3" type="submit"  name="btn_skipad1">Change</button>
+                      </div>
+                    </div>
+                  </div>        
+              </form>
+
+
+
+                <br/><br/>
+                
+                  
+              <form action="/admin/advertise/manage-submit" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <img class="ad-img"  src="<%= advertise.walkthrough1 %>" />
+                      <label class="control-label  col-sm-2">Walkthrough1 <span class="vd_red">*</span></label>
+                      <div id="first-name-input-wrapper" class="controls col-sm-9">
+                        <% if(flash.walkthrough1){ %><small style="color:red;"><%= flash.walkthrough1 %></small>  <% } %>
+                        <input class="fileinput pull-right" name="walkthrough1" type="file" >
+                      </div>
+                      <div class="col-sm-3">
+                        <button class="btn vd_bg-green vd_white mt-3" type="submit"  name="btn_walkthrough1">Change</button>
+                      </div>
+                    </div>
+                  </div>        
+              </form>
+
+
+              
+              <br/><br/>
+                
+                  
+              <form action="/admin/advertise/manage-submit" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <img class="ad-img"  src="<%= advertise.walkthrough2 %>" />
+                      <label class="control-label  col-sm-2">Walkthrough2 <span class="vd_red">*</span></label>
+                      <div id="first-name-input-wrapper" class="controls col-sm-9">
+                        <% if(flash.walkthrough2){ %><small style="color:red;"><%= flash.walkthrough2 %></small>  <% } %>
+                        <input class="fileinput pull-right" name="walkthrough2" type="file" >
+                      </div>
+                      <div class="col-sm-3">
+                        <button class="btn vd_bg-green vd_white mt-3" type="submit"  name="btn_walkthrough2">Change</button>
+                      </div>
+                    </div>
+                  </div>        
+              </form>
+
+
+              <br/><br/>
+                
+                  
+              <form action="/admin/advertise/manage-submit" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <img class="ad-img"  src="<%= advertise.walkthrough3 %>" />
+                      <label class="control-label  col-sm-2">Walkthrough3 <span class="vd_red">*</span></label>
+                      <div id="first-name-input-wrapper" class="controls col-sm-9">
+                        <% if(flash.walkthrough3){ %><small style="color:red;"><%= flash.walkthrough3 %></small>  <% } %>
+                        <input class="fileinput pull-right" name="walkthrough3" type="file" >
+                      </div>
+                      <button class="btn vd_bg-green vd_white" type="submit"  name="btn_walkthrough3">Change</button>
+                    </div>
+                  </div>        
+              </form>
+
+
+
+              
+                </div>
+              </div>
+            </div>
+  
+          
+  
+            <!-- End Content -->
+  
+  
+  
+  
+  
+         
+            
+          </div>
+          <!-- .vd_content --> 
+        </div>
+        <!-- .vd_container --> 
+      </div>
+      <!-- .vd_content-wrapper --> 
+      
+      <!-- Middle Content End --> 
+      
+    </div>
+    <!-- .container --> 
+  </div>
+  <!-- .content -->
+  
+  
+  
+  
+<%- include ../layout/footer %> 
+      
+            

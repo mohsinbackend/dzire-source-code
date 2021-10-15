@@ -1,0 +1,50 @@
+<html>
+<head>
+</head>
+<body>
+<!-- <button onclick="talkserver()">call Soket</button> -->
+    
+<h1>App Notification Count <span id='CountId'></span> </h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
+<script>
+
+
+document.getElementById("CountId").innerHTML = 0; 
+
+var socket = io('http://127.0.0.1:5000');
+            socket.on('app_notification_counts', function (data) 
+            {
+                
+                document.getElementById("CountId").innerHTML = data.notifycount; 
+
+                // alert(message.greeting);
+                // document.body.appendChild(
+                //     document.createTextNode(message.greeting)
+                // );
+                // socket.emit('greeting-from-client', {
+                //     greeting: 'Hello Server'
+                // });
+            
+            });
+
+
+        //   function  talkserver() {
+        //       console.log("starts...")
+        //     socket.emit("app_notification_counts", {greeting: 'Hello Client'})
+        //   }
+
+            // var socket = io('http://127.0.0.1:5000');
+            // socket.on('greeting-from-server', function (message) {
+            //     alert(message.greeting);
+            //     document.body.appendChild(
+            //         document.createTextNode(message.greeting)
+            //     );
+            //     socket.emit('greeting-from-client', {
+            //         greeting: 'Hello Server'
+            //     });
+            // });
+</script>
+</body>
+</html>

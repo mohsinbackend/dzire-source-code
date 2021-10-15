@@ -1,0 +1,157 @@
+
+<%- include ../layout/header %> 
+    
+        
+
+<!-- Middle Content Start -->
+
+<div class="vd_content-wrapper">
+    <div class="vd_container">
+      <div class="vd_content clearfix">
+        <div class="vd_head-section clearfix">
+          <div class="vd_panel-header">
+            <ul class="breadcrumb">
+              <li><a href="/admin">Dashboard</a> </li>
+              <li class="active">Category View</li>
+            </ul>
+
+          </div>
+        </div>
+        <!-- vd_head-section -->
+        
+        <div class="vd_title-section clearfix">
+          <div class="vd_panel-header">
+            <h1>View Category</h1>
+            <!-- <small class="subtitle">Default dashboard for multipurpose demonstration</small> -->
+            <div class="vd_panel-menu  hidden-xs">
+<!-- menu --> 
+</div>
+
+
+
+<!-- vd_panel-menu --> 
+          </div>
+          <!-- vd_panel-header --> 
+        </div>
+        <!-- vd_title-section -->
+        
+
+
+
+
+
+
+
+
+        <!-- Begin Content -->
+
+          <div class="vd_content-section clearfix">
+          <div class="panel widget light-widget">
+            <div class="panel-heading no-title"> </div>
+            <div class="panel-body">
+              <!-- <h2 class="mgbt-xs-20">View Category</h2> -->
+
+              
+
+<!-- Begin AlertMgs -->
+
+<%
+
+var flash = getMessages();
+
+if(flash.info){ %>
+
+
+<div class="alert alert-info"> 
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+<span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+<strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+</div>
+
+<% }else if(flash.error){ %>
+
+<div class="alert alert-danger"> 
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+<span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+<strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a> 
+</div>
+
+<% }else if(flash.success){ %>
+
+<div class="alert alert-success"> 
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+<span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+<strong>Success : </strong>  
+<a href="#" class="alert-link"><%= flash.success %></a>. 
+</div>
+
+<% } %>
+<!-- Begin AlertMgs -->
+
+
+<label>ID : <% if(category.id){%>   <%= category.id %> <%}%></label>
+<br>
+<label>Priority :
+  <% if(category.dashboard=='1') { %>
+    <span class="label label-success"><%= category.dashboard_priority %></span>
+    <% } else { %>
+    <span class="label label-danger"><%= category.dashboard_priority %></span>
+  <% } %> 
+</label>
+<br>
+<label>Name : <% if(category.en_name){%>   <%= category.en_name %> <%}%></label>
+<br>
+<label>Status : 
+  <% if(category.status=='1') { %>
+    <span class="label label-success">Active</span>
+    <% } else { %>
+    <span class="label label-danger">Deactive</span>
+  <% } %>  
+</label>
+<br>
+<label>Dashboard : 
+  <% if(category.dashboard=='1') { %>
+    <span class="label label-success">Appear</span>
+    <% } else { %>
+    <span class="label label-danger">Disappear</span>
+  <% } %>
+</label>
+<br>
+
+<img src="<%= category.image_url %>">
+
+
+
+            </div>
+          </div>
+        </div>
+
+      
+
+        <!-- End Content -->
+
+
+
+
+
+     
+        
+      </div>
+      <!-- .vd_content --> 
+    </div>
+    <!-- .vd_container --> 
+  </div>
+  <!-- .vd_content-wrapper --> 
+  
+  <!-- Middle Content End --> 
+  
+</div>
+<!-- .container --> 
+</div>
+<!-- .content -->
+
+
+
+
+        
+<%- include ../layout/footer %> 

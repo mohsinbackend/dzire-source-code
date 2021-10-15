@@ -1,0 +1,205 @@
+
+<%- include ../layout/header %> 
+    
+        
+
+<!-- Middle Content Start -->
+
+<div class="vd_content-wrapper">
+    <div class="vd_container">
+      <div class="vd_content clearfix">
+        <div class="vd_head-section clearfix">
+          <div class="vd_panel-header">
+            <ul class="breadcrumb">
+              <li><a href="/admin">Dashboard</a> </li>
+              <li class="active">Notification Manage</li>
+            </ul>
+
+          </div>
+        </div>
+        <!-- vd_head-section -->
+        
+        <div class="vd_title-section clearfix">
+          <div class="vd_panel-header">
+            <h1>Notification Manage</h1>
+            <!-- <small class="subtitle">Default dashboard for multipurpose demonstration</small> -->
+            <div class="vd_panel-menu  hidden-xs">
+<!-- menu --> 
+</div>
+
+
+
+<!-- vd_panel-menu --> 
+          </div>
+          <!-- vd_panel-header --> 
+        </div>
+        <!-- vd_title-section -->
+        
+
+
+
+
+
+
+
+
+        <!-- Begin Content -->
+
+          <div class="vd_content-section clearfix">
+          <div class="panel widget light-widget">
+            <div class="panel-heading no-title"> </div>
+            <div class="panel-body">
+              <h2 class="mgbt-xs-20">Notification Manage Form</h2>
+
+              
+
+<!-- Begin AlertMgs -->
+
+<%
+
+var flash = getMessages();
+
+if(flash.info){ %>
+
+
+<div class="alert alert-info"> 
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+<span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+<strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+</div>
+
+<% }else if(flash.error){ %>
+
+<div class="alert alert-danger"> 
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+<span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+<strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a> 
+</div>
+
+<% }else if(flash.success){ %>
+
+<div class="alert alert-success"> 
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+<span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+<strong>Success : </strong>  
+<a href="#" class="alert-link"><%= flash.success %></a>. 
+</div>
+
+<% } %>
+<!-- Begin AlertMgs -->
+
+
+
+
+                
+
+
+              <form action="/admin/notification/send" method="POST"  class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+              <!-- <form action="<%= url+'/admin/notification/send' %>" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate"> -->
+                <div class="alert alert-danger vd_hidden">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="icon-cross"></i></button>
+                  <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span><strong>Oh snap!</strong> Change a few things up and try submitting again. </div>
+                <div class="alert alert-success vd_hidden">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="icon-cross"></i></button>
+                  <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span><strong>Well done!</strong>. </div>
+                
+
+                  <!-- 
+                <div class="form-group">
+                    <div class="col-md-12">
+                      <label class="control-label  col-sm-2">Image <span class="vd_red">*</span></label>
+                      <div id="first-name-input-wrapper" class="controls col-sm-8">
+                        <% if(flash.image_err){ %><small style="color:red;"><%= flash.image_err %></small>  <% } %>
+                        <input name="image" type="file" id="ImageInput"  class="width-60 required"   required="">
+                      </div>
+                    </div>
+                  </div>  
+               -->
+
+
+                <div class="form-group">
+                    <div class="col-md-12">          
+                      <label class="control-label  col-sm-2">Title <span class="vd_red">*</span></label>
+                      <% if(flash.title_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.title_err %></small>  <% } %>
+                      <div id="first-name-input-wrapper" class="controls col-sm-9">
+                        <input name="title" value="<% if(flash.title){%><%= flash.title %><%}%>" type="text" placeholder="Title" class="width-60 required"  id="EnInput" required="">
+                      </div>
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <label class="control-label  col-sm-2">Body <span class="vd_red">*</span></label>
+                    <div id="first-name-input-wrapper" class="controls col-sm-6">
+                      <% if(flash.body_err){ %><small style="color:red;"><%= flash.body_err %></small>  <% } %>  
+                      <textarea name="body"   placeholder="Body" rows="5" class="width-100 required"  ><%if(flash.body){%><%= flash.body%><%}%></textarea>
+                    </div>
+                  </div>
+                </div>
+                  
+                
+                 
+              <div class="form-group">
+                  <div class="col-md-12">
+                    <label class="control-label col-sm-2">Users<span class="vd_red">*</span></label>
+                    <div id="email-input-wrapper" class="controls col-sm-6">
+                      <% if(flash.users_err){ %> <small style="color:red;"><%= flash.users_err %></small>  <% } %>
+                      <select name="users" multiple >
+                        <% users.forEach( user => { %> <option value="<%= user.id %>" ><%= user.name %></option><% }) %>
+                      </select>
+                    </div>
+                  </div>
+              </div>            
+
+
+
+                <div id="vd_login-error" class="alert alert-danger hidden"><i class="fa fa-exclamation-circle fa-fw"></i> Please fill the necessary field </div>
+                <div class="form-group">
+                  <div class="col-sm-2"></div>
+                  
+                  
+                  <div class="col-md-6 mgbt-xs-10 mgtp-20">
+                    
+
+                    <div class="mgtp-10">
+                      <button class="btn vd_bg-green vd_white" type="submit" id="submit-register" name="submit-register">Send</button>
+                    </div>
+                  </div> 
+
+
+                  <div class="col-md-12 mgbt-xs-5"> </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      
+
+        <!-- End Content -->
+
+
+
+
+
+     
+        
+      </div>
+      <!-- .vd_content --> 
+    </div>
+    <!-- .vd_container --> 
+  </div>
+  <!-- .vd_content-wrapper --> 
+  
+  <!-- Middle Content End --> 
+  
+</div>
+<!-- .container --> 
+</div>
+<!-- .content -->
+
+
+
+
+        
+<%- include ../layout/footer %> 

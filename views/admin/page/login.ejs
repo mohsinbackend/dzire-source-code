@@ -1,0 +1,141 @@
+<%- include header %> 
+
+
+
+<!-- Content Begin -->
+
+<div class="content">
+ 
+ <div class="container"> 
+
+        
+    <!-- Middle Content Start -->
+    <div class="vd_content-wrapper">
+      <div class="vd_container">
+      
+      <!--  <div class="vd_content clearfix"> -->
+      
+          
+          <!-- <div class="vd_content-section clearfix"> -->
+           
+            <div class="vd_login-page">
+              <div class="heading clearfix"> 
+             
+                
+                
+<!-- Begin AlertMgs -->
+<%
+var flash = getMessages();
+if(flash.info){ %>
+
+  
+  <div class="alert alert-info"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+    <strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+  </div>
+
+<% }else if(flash.error){ %>
+
+  <div class="alert alert-danger"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+    <strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a> 
+  </div>
+
+<% }else if(flash.success){ %>
+
+  <div class="alert alert-success"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+    <strong>Success : </strong>  
+    <a href="#" class="alert-link"><%= flash.success %></a>. 
+  </div>
+
+<% } %>
+<!-- End AlertMgs -->
+               
+    
+              <div class="logo">
+                  <h2 class="mgbt-xs-5"><img height="250" width="250" src="<%=url+'/assets/img/logo.png'%>" alt="logo"></h2>
+                </div>
+                <h4 class="text-center font-semibold vd_grey"><i class="icon-key"></i> LOGIN ADMIN PANEL ACCOUNT</h4>
+                      
+              </div>
+             
+
+              <div class="panel widget">
+                <div class="panel-body">
+                    <form action="/admin/auth/attempt" method="POST" class="form-horizontal"   role="form">
+                    
+                      <div class="form-group  mgbt-xs-20">
+                        <div class="col-md-12">
+                          <div class="label-wrapper sr-only">
+                            <label class="control-label" for="email">Email</label>
+                          </div>
+                          <% if(flash.email_err){ %> <small style="color:red;"><%= flash.email_err %></small>  <% } %>
+                        
+                          <div class="vd_input-wrapper" id="email-input-wrapper"> <span class="menu-icon"> <i class="fa fa-envelope"></i> </span>
+                            <input type="email" autocomplete="off" value="<%if(flash.email){%><%=flash.email%><%}%>" placeholder="Email" id="email" name="email" class="required" >
+                          </div>
+                          <div class="label-wrapper">
+                            <label class="control-label sr-only" for="password">Password</label>
+                          </div>
+                          <% if(flash.password_err){ %> <small style="color:red;"><%= flash.password_err %></small>  <% } %>
+                      
+                          <div class="vd_input-wrapper" id="password-input-wrapper" > <span class="menu-icon"> <i class="fa fa-lock"></i> </span>
+                            <input type="password" placeholder="Password" id="password" name="password" class="required">
+                          </div>
+                        </div>
+                      </div>
+                     
+                        <div class="form-group">
+                      	 <div class="col-md-12 text-center mgbt-xs-5">
+                          <button class="btn vd_bg-green vd_white width-100" type="submit" id="loginsubmit">Login</button>
+                          
+                          <div class="form-group" style="margin-top: 15px;">
+                            <input name="remember" id='remember' value="1" type="checkbox" class="form-check-input" >
+                            <label class="form-check-label" for="exampleCheck1" style="color: #3d015b;">Remember me</label>
+                          </div>
+
+                        </div>
+                        
+                        
+                       
+
+                      </div>
+                    </form>
+                </div>
+              </div>
+
+       
+              <!-- Panel Widget -->
+           
+              
+           
+            </div>
+            <!-- vd_login-page --> 
+            
+          <!-- </div> -->
+          <!-- .vd_content-section --> 
+          
+        <!-- </div> -->
+        <!-- .vd_content --> 
+      <!-- </div> -->
+      <!-- .vd_container --> 
+    
+    </div>
+    <!-- .vd_content-wrapper --> 
+    
+    <!-- Middle Content End --> 
+    
+  </div>
+  <!-- .container --> 
+
+</div>
+<!-- .content -->
+
+
+
+
+<%- include footer %> 

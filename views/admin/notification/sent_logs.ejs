@@ -1,0 +1,130 @@
+<%- include ../layout/header %>
+
+
+
+<!-- Middle Content Start -->
+<div class="vd_content-wrapper">
+  <div class="vd_container">
+    <div class="vd_content clearfix">
+      <div class="vd_head-section clearfix">
+        <div class="vd_panel-header">
+          <ul class="breadcrumb">
+            <li><a href="/admin">Dashboard</a> </li>
+            <li class="active">Sent Notify Logs</li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- vd_head-section -->
+
+      <div class="vd_title-section clearfix">
+        <div class="vd_panel-header">
+          <h1>Sent Notify Logs</h1>
+          <div class="vd_panel-menu  hidden-xs">
+
+            <!-- menu -->
+          </div>
+
+
+
+          <!-- vd_panel-menu -->
+        </div>
+        <!-- vd_panel-header -->
+      </div>
+      <!-- vd_title-section -->
+
+
+
+
+      <!-- Begin Content -->
+
+      <div class="vd_content-section clearfix">
+        <div class="row">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel widget">
+                <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title">
+                    <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span> Sent Notify Logs </h3>
+                </div>
+                <div class="panel-body  table-responsive">
+                  <table id="myTable" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Body</th>
+                        <th>No Of Sent</th>
+                        <th>Sent At</th>
+                        <!-- <th>Action</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <% notifylogs.forEach( notifylog => { %>
+                      <tr id='<%= notifylog.id %>'>
+                        <td><%= notifylog.id %></td>
+                        <td><%= notifylog.title %></td>
+                        <td><%= notifylog.body %></td>
+                        <td><%= notifylog.no_of_sent %></td>
+                        <td><%= notifylog.sent_at %></td>
+                      
+                        <!-- 
+                        <td class="menu-action">
+                          <a href="/admin/review/view/<%= notifylog.id %>" data-original-title="view" data-toggle="tooltip" data-placement="top"
+                            class="btn menu-icon vd_bg-green"> <i class="fa fa-eye"></i> </a>
+
+                          <a data-original-title="delete" onclick="deleteRow('<%= notifylog.id %>')" data-toggle="tooltip"
+                            data-placement="top" class="btn menu-icon vd_bg-red"> <i class="fa fa-times"></i> </a>
+                        </td> 
+                        -->
+                      
+                      </tr>
+                      <% }) %>
+
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Panel Widget -->
+            </div>
+            <!-- col-md-12 -->
+          </div>
+
+
+
+
+        </div>
+        <!-- row -->
+
+      </div>
+
+
+      <!-- End Content -->
+
+    </div>
+    <!-- .vd_content -->
+  </div>
+  <!-- .vd_container -->
+</div>
+<!-- .vd_content-wrapper -->
+
+<!-- Middle Content End -->
+
+</div>
+<!-- .container -->
+</div>
+<!-- .content -->
+
+
+
+<%- include ../layout/footer %>
+<script>
+  $(document).ready(function () {
+    $('#myTable').DataTable({ "pagingType": "full_numbers"});
+  });
+
+</script>

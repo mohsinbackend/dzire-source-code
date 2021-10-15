@@ -1,0 +1,208 @@
+
+<%- include ../layout/header %> 
+
+
+
+    <!-- Middle Content Start -->
+    
+    <div class="vd_content-wrapper">
+        <div class="vd_container">
+          <div class="vd_content clearfix">
+            <div class="vd_head-section clearfix">
+              <div class="vd_panel-header">
+                <ul class="breadcrumb">
+                  <li><a href="index.php">Dashboard</a> </li>
+                  <li class="active">Subcategory Create</li>
+                </ul>
+   
+              </div>
+            </div>
+            <!-- vd_head-section -->
+            
+            <div class="vd_title-section clearfix">
+              <div class="vd_panel-header">
+                <h1>Create Subcategory</h1>
+                <!-- <small class="subtitle">Default dashboard for multipurpose demonstration</small> -->
+                <div class="vd_panel-menu  hidden-xs">
+    <!-- menu --> 
+  </div>
+  
+  
+  
+  <!-- vd_panel-menu --> 
+              </div>
+              <!-- vd_panel-header --> 
+            </div>
+            <!-- vd_title-section -->
+            
+  
+  
+  
+  
+  
+  
+
+<!-- Begin AlertMgs -->
+  
+<%
+var flash = getMessages();
+if(flash.info){ %>
+
+  
+  <div class="alert alert-info"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+    <strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+  </div>
+
+<% }else if(flash.error){ %>
+
+  <div class="alert alert-danger"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+    <strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a> 
+  </div>
+
+<% }else if(flash.success){ %>
+
+  <div class="alert alert-success"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+    <strong>Success : </strong>  
+    <a href="#" class="alert-link"><%= flash.success %></a>. 
+  </div>
+
+<% } %>
+<!-- Begin AlertMgs -->
+
+  
+  
+  
+  
+            <!-- Begin Content -->
+  
+              <div class="vd_content-section clearfix">
+              <div class="panel widget light-widget">
+                <div class="panel-heading no-title"> </div>
+                <div class="panel-body">
+                  <h2 class="mgbt-xs-20">Create Subcategory Form</h2>
+
+
+                    
+
+
+
+                  <form action="<%= url+'/admin/subcategory/store' %>" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                      
+
+                    
+                    
+  
+    
+                    <!-- 
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label class="control-label  col-sm-2">Arabic <span class="vd_red">*</span></label>
+                        <% if(flash.ar_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.ar_err %></small>  <% } %>
+                        <div id="first-name-input-wrapper" class="controls col-sm-9">
+                          <input name="ar" value="<% if(flash.ar){%><%= flash.ar %><%}%>" type="text" placeholder="Arabic Name" class="width-60 required"  id="ArInput" required="">
+                        </div>
+                      </div>
+                    </div>   -->
+
+
+                    <div class="form-group">
+                        <div class="col-md-12">          
+                          <label class="control-label  col-sm-2">Name <span class="vd_red">*</span></label>
+                          <% if(flash.en_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.en_err %></small>  <% } %>
+                          <div id="first-name-input-wrapper" class="controls col-sm-9">
+                            <input name="en" value="<% if(flash.en){%><%= flash.en %><%}%>" type="text" placeholder="Englis Name" class="width-60 required"  id="EnInput" required="">
+                          </div>
+                        </div>
+                    </div>  
+    
+
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label class="control-label col-sm-2">Category<span class="vd_red">*</span></label>
+                        <div id="email-input-wrapper" class="controls col-sm-6">
+                          <% if(flash.cate_id_err){ %> <small style="color:red;"><%= flash.cate_id_err %></small>  <% } %>
+                          <select name="cate_id" id="CategorySelect" >
+                            <option value="" >Select category</option>
+                            <% categories.forEach( category => { %>
+                              <option <% if(flash.cate_id && flash.cate_id==category.id ){ %> selected="true" <% } %> value="<%=category.id%>" ><%=category.name%></option>
+                            <% }); %> 
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+  
+
+
+  
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label class="control-label col-sm-2">Status<span class="vd_red">*</span></label>
+                        <div id="email-input-wrapper" class="controls col-sm-6">
+                          <% if(flash.status_err){ %> <small style="color:red;"><%= flash.status_err %></small>  <% } %>
+                          <select name="status" id="StatusSelect" >
+                            <option value="" >Select Status</option>
+                            <option <% if(flash.status && flash.status=='1'){ %> selected="true" <% } %> value="1" >Active</option>
+                            <option <% if(flash.status && flash.status=='0'){ %> selected="true" <% } %> value="0" >Deactive</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+  
+  
+  
+                    <div id="vd_login-error" class="alert alert-danger hidden"><i class="fa fa-exclamation-circle fa-fw"></i> Please fill the necessary field </div>
+                    <div class="form-group">
+                      <div class="col-sm-2"></div>
+                      
+                      
+                      <div class="col-md-6 mgbt-xs-10 mgtp-20">
+                        
+  
+                        <div class="mgtp-10">
+                          <button class="btn vd_bg-green vd_white" type="submit" id="submit-register" name="submit-register">Store</button>
+                        </div>
+                      </div> 
+  
+  
+                      <div class="col-md-12 mgbt-xs-5"> </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+  
+          
+  
+            <!-- End Content -->
+  
+  
+  
+  
+  
+         
+            
+          </div>
+          <!-- .vd_content --> 
+        </div>
+        <!-- .vd_container --> 
+      </div>
+      <!-- .vd_content-wrapper --> 
+      
+      <!-- Middle Content End --> 
+      
+    </div>
+    <!-- .container --> 
+  </div>
+  <!-- .content -->
+  
+  
+  
+  
+      <%- include ../layout/footer %> 
+

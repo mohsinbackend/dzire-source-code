@@ -1,0 +1,34 @@
+<!-- Begin AlertMgs -->
+  
+<%
+var errors={};            
+var messages = getMessages();
+if(messages.errors){ errors=messages.errors; }
+if(messages.info){ %>
+
+  
+  <div class="alert alert-info"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+    <strong>Info : </strong> <a href="#" class="alert-link"><%= messages.info %></a>
+  </div>
+
+<% }else if(messages.error){ %>
+
+  <div class="alert alert-danger"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+    <strong>Error :</strong> <a href="#" class="alert-link"><%= messages.error %></a> 
+  </div>
+
+<% }else if(messages.success){ %>
+
+  <div class="alert alert-success"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+    <strong>Success : </strong>  
+    <a href="#" class="alert-link"><%= messages.success %></a>. 
+  </div>
+
+<% } %>
+<!-- Begin AlertMgs -->

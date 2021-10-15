@@ -1,0 +1,512 @@
+
+<%- include ../layout/header %> 
+    
+     <style>
+       .update-btn{
+         margin-right:7px;
+       }
+     </style>   
+
+    <!-- Middle Content Start -->
+    
+    <div ng-controller="CateCreateCtrl" class="vd_content-wrapper">
+        <div class="vd_container">
+          <div class="vd_content clearfix">
+            <div class="vd_head-section clearfix">
+              <div class="vd_panel-header">
+                <ul class="breadcrumb">
+                  <li><a href="/admin">Dashboard</a> </li>
+                  <li class="active">Category Create</li>
+                </ul>
+   
+              </div>
+            </div>
+            <!-- vd_head-section -->
+            
+            <div class="vd_title-section clearfix">
+              <div class="vd_panel-header">
+                <h1>Create Category</h1>
+                <!-- <small class="subtitle">Default dashboard for multipurpose demonstration</small> -->
+                <div class="vd_panel-menu  hidden-xs">
+    <!-- menu --> 
+  </div>
+  
+  
+  
+  <!-- vd_panel-menu --> 
+              </div>
+              <!-- vd_panel-header --> 
+            </div>
+            <!-- vd_title-section -->
+            
+  
+  
+  
+  
+  
+  
+  
+  
+            <!-- Begin Content -->
+  
+              <div class="vd_content-section clearfix">
+              <div class="panel widget light-widget">
+                <div class="panel-heading no-title"> </div>
+                <div class="panel-body">
+                  <h2 class="mgbt-xs-20">Create Category</h2>
+
+                  
+
+<!-- Begin AlertMgs -->
+  
+<%
+
+var flash = getMessages();
+
+if(flash.info){ %>
+
+  
+  <div class="alert alert-info"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+    <strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+  </div>
+
+<% }else if(flash.error){ %>
+
+  <div class="alert alert-danger"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+    <strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a> 
+  </div>
+
+<% }else if(flash.success){ %>
+
+  <div class="alert alert-success"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+    <strong>Success : </strong>  
+    <a href="#" class="alert-link"><%= flash.success %></a>. 
+  </div>
+
+<% } %>
+<!-- Begin AlertMgs -->
+
+  
+  
+
+                    
+
+
+
+                  <form id="CateForm" action="/admin/category/store" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                    <div class="alert alert-danger vd_hidden">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="icon-cross"></i></button>
+                      <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span><strong>Oh snap!</strong> Change a few things up and try submitting again. </div>
+                    <div class="alert alert-success vd_hidden">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="icon-cross"></i></button>
+                      <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span><strong>Well done!</strong>. </div>
+                    
+  
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <label class="control-label  col-sm-2">Image <span class="vd_red">*</span></label>
+                          <div id="first-name-input-wrapper" class="controls col-sm-8">
+                            <% if(flash.image_err){ %><small style="color:red;"><%= flash.image_err %></small>  <% } %>
+                            <input name="image" type="file" id="ImageInput"  class="width-60 required"   required="">
+                          </div>
+                        </div>
+                      </div>  
+                  
+                                      
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <label class="control-label  col-sm-2">Arabic <span class="vd_red">*</span></label>
+                        <% if(flash.ar_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.ar_err %></small>  <% } %>
+                        <div id="first-name-input-wrapper" class="controls col-sm-9">
+                          <input name="ar" value="<% if(flash.ar){%><%= flash.ar %><%}%>" type="text" placeholder="Arabic Name" class="width-60 required"  id="ArInput" required="">
+                        </div>
+                      </div>
+                    </div>  
+                    
+
+
+                    <div class="form-group">
+                        <div class="col-md-12">          
+                          <label class="control-label  col-sm-2">English <span class="vd_red">*</span></label>
+                          <% if(flash.en_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.en_err %></small>  <% } %>
+                          <div id="first-name-input-wrapper" class="controls col-sm-9">
+                            <input name="en" value="<% if(flash.en){%><%= flash.en %><%}%>" type="text" placeholder="Englis Name" class="width-60 required"  id="EnInput" required="">
+                          </div>
+                        </div>
+                    </div>
+                    
+                    
+                  <!-- <div class="form-group">
+                  <div class="col-md-12">          
+                        <label class="control-label  col-sm-2">Dashboard Priority<span class="vd_red">*</span></label>
+                        <div id="first-name-input-wrapper" class="controls col-sm-9">
+                          <% if(flash.dashboard_priority_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.dashboard_priority_err %></small>  <% } %>
+                          <input name="dashboard_priority" value="<% if(flash.dashboard_priority ){%><%= flash.dashboard_priority %><%}%>" type="number" placeholder="0"  class="width-10 required"  >
+                        </div>
+                      </div>
+                  </div>
+                       -->
+                      
+                
+                <div class="form-group">
+                    <div class="col-md-12">
+                      
+                      <label class="control-label col-sm-2">Dashboard <span class="vd_red">*</span></label>
+                      <div id="email-input-wrapper" class="controls col-sm-3">
+                        <% if(flash.dashboard_err){ %> <small style="color:red;"><%= flash.dashboard_err %></small>  <% } %>
+                        <select name="dashboard" id="StatusSelect" >
+                          <option value="" >Select Dashboard</option>
+                          <option value="1" <% if(flash.dashboard && flash.dashboard=='1' ){ %> selected="true" <% } %> >Appear</option>
+                          <option value="0" <% if(flash.dashboard && flash.dashboard=='0' ){ %> selected="true" <% } %> >Disappear</option>
+                        </select>
+                      </div>
+
+                      <label class="control-label col-sm-1">Priority<span class="vd_red">*</span></label>
+                        <div id="first-name-input-wrapper" class="controls col-sm-6">
+                          <% if(flash.dashboard_priority_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.dashboard_priority_err %></small>  <% } %>
+                          <input name="dashboard_priority" value="<% if(flash.dashboard_priority ){%><%= flash.dashboard_priority %><%}%>" type="number" placeholder="0"  class="width-20 required"  >
+                      </div>
+
+                    </div>
+                </div>            
+                
+              
+                     
+              <div class="form-group">
+                      <div class="col-md-12">
+                        <label class="control-label col-sm-2">Status<span class="vd_red">*</span></label>
+                        <div id="email-input-wrapper" class="controls col-sm-6">
+                          <% if(flash.status_err){ %> <small style="color:red;"><%= flash.status_err %></small>  <% } %>
+                          <select name="status" id="StatusSelect" >
+                            <option value="" >Select Status</option>
+                            <option value="1" <% if(flash.status && flash.status=='1'){ %> selected="true" <% } %> >Active</option>
+                            <option value="0" <% if(flash.status && flash.status=='0'){ %> selected="true" <% } %> >Deactive</option>
+                          </select>
+                        </div>
+                      </div>
+              </div>            
+  
+
+
+
+
+
+                  <input  name="subcategories" value="<% if(flash.subcategories){%><%= flash.subcategories %><% }else{ %>[]<%}%>" id="subcategoriesInput" type="hidden"  >
+            
+
+
+
+  
+  
+                    <div id="vd_login-error" class="alert alert-danger hidden"><i class="fa fa-exclamation-circle fa-fw"></i> Please fill the necessary field </div>
+                    <div class="form-group">
+                      <div class="col-sm-2"></div>
+                      
+                      
+                      <div class="col-md-6 mgbt-xs-10 mgtp-20">
+                        
+  
+                        <div class="mgtp-10">
+                          <button  class="btn vd_bg-green vd_white" type="submit" id="submit-register" name="submit-register">Create</button>
+                        </div>
+                      </div> 
+  
+  
+                      <div class="col-md-12 mgbt-xs-5"> </div>
+                    </div>
+                  </form>
+
+
+
+
+
+
+              <!-- Begin Subcate -->
+                  <br><br> 
+              <h2 class="mgbt-xs-20">Subcategory Section <span><% if(flash.subcategories_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.subcategories_err %></small><% } %></span></h2>
+              <br>   
+
+              
+              <div class="row">
+                <form>
+                <div class="col-md-6">
+                  <div class="form-group row">  
+                     <label class="control-label col-sm-3">Arabic<span class="vd_red">*</span></label>
+                     <small ng-bind="errors.ar" style="color:red;" ></small>
+                     <div  class="controls col-sm-6">
+                        <input ng-model="subcate.ar"  type="text" placeholder="Arabic Name" class="w-50" >
+                     </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-sm-3">English<span class="vd_red">*</span></label>
+                    <small ng-bind="errors.en" style="color:red;" ></small>
+                    <div  class="controls col-sm-6">
+                      <input ng-model="subcate.en"  type="text" placeholder="English Name" class="w-50"  >
+                    </div>
+                  </div>
+                </div>
+               <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-sm-3">Priority<span class="vd_red">*</span></label>
+                  <small ng-bind="errors.priority" style="color:red;" ></small>
+                  <div  class="controls col-sm-6">
+                    <input ng-model="subcate.priority" name="dashboard_priority" value="<% if(flash.dashboard_priority ){%><%= flash.dashboard_priority %><%}%>" type="number" placeholder="0"  class="w-50 required"  >
+                </div>
+                </div>
+               </div>
+               
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-sm-3">Status<span class="vd_red">*</span></label>
+                    <small ng-bind="errors.status" style="color:red;" ></small>
+                    <div class="controls col-sm-6">
+                      <select ng-model="subcate.status" >
+                        <option value="" >Select Status</option>
+                        <option ng-value="1" >Active</option>
+                        <option ng-value="0" >Deactive</option>
+                      </select>
+                    </div>
+                </div>  
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group row">
+                    <div class="mgtp-2">
+                      <button ng-if="mode=='create'" ng-click="SubcateCreate()" class="btn vd_bg-green vd_white pull-right w-50" type="button" >Create</button>
+                      <button ng-if="mode=='edit'" ng-click="SubcateEditCancel()" class="btn vd_bg-green vd_white pull-right w-50" type="button" >Cancel</button> 
+                      <button ng-if="mode=='edit'" ng-click="SubcateUpdate()" class="btn vd_bg-green vd_white pull-right w-50 update-btn" type="button" >Update</button>
+                    </div>
+                  </div>
+                </div>          
+                </form>
+              </div> 
+              
+   
+
+
+
+              <div class="row">
+                <div class="col-md-11">
+                  <div class="panel widget">
+                    <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title">
+                        <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Subcategories Manage</h3>
+                    </div>
+                    <div class="panel-body  table-responsive">
+                      <table id="myTable" class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Priority</th>
+                            <th>Arabic</th>
+                            <th>Englis</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+    
+                          <tr ng-repeat="row in subcates track by $index"   >
+                            <td ng-bind="row.id"></td>
+                            <td ng-bind="row.priority"></td>
+                            <td ng-bind="row.ar"></td>
+                            <td ng-bind="row.en"></td>
+                            <td ng-bind="row.status"></td>
+                            <td>
+                              <i  ng-click="SubcateEdit($index)" class="fa fa-edit" style="font-size:30px;color:purple"></i>
+                                &nbsp;&nbsp;
+                              <i  ng-click="SubcateDel($index)" class="fa fa-trash-o" style="font-size:30px;color:purple" ></i>
+                            </td>
+                          </tr>
+    
+    
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- Panel Widget -->
+                </div>
+                <!-- col-md-12 -->
+              </div>
+
+              <!-- Begin Subcate -->
+                 
+
+          
+
+
+
+
+                </div>
+              </div>
+            </div>
+            
+
+
+              
+  
+            <!-- End Content -->
+  
+  
+  
+  
+  
+         
+            
+          </div>
+          <!-- .vd_content --> 
+        </div>
+        <!-- .vd_container --> 
+    </div>
+      <!-- .vd_content-wrapper --> 
+      
+      <!-- Middle Content End --> 
+      
+    </div>
+    <!-- .container --> 
+  </div>
+  <!-- .content -->
+  
+  
+  
+  <script>
+    app.controller('CateCreateCtrl', function($scope) 
+    {
+
+
+
+      $scope.mode='create';
+      $scope.errors={};
+      $scope.subcate={};
+      $scope.subcates=JSON.parse($("#subcategoriesInput").val());
+
+      //alert($("#subcategoriesInput").val())
+      
+      //$scope.subcates.push({id:1,ar:'1arabic',en:'1english',priority:1,status:1});
+      //$scope.subcates.push({id:2,ar:'2arabic',en:'2english',priority:2,status:1});
+      // $scope.subcates.push({id:3,ar:'arabic',en:'english',priority:786,status:1});
+      // $scope.subcates.push({id:4,ar:'arabic',en:'english',priority:786,status:1});
+      // $scope.subcates.push({id:5,ar:'arabic',en:'english',priority:786,status:1});
+      
+      $("#CateForm").on("submit",function()
+      {
+        $("#subcategoriesInput").val(JSON.stringify($scope.subcates));
+        
+      });
+
+
+      $scope.SubcateCreate = function()
+      {
+          $scope.errors={};
+          if(!$scope.subcate.status){$scope.errors.status=`Status is required.`; }
+          if(!$scope.subcate.priority){$scope.errors.priority=`Priority name is required.`; }
+          if(!$scope.subcate.ar||$scope.subcate.ar.trim()===''){$scope.errors.ar=`Arabic name is required.`; }
+          if(!$scope.subcate.en||$scope.subcate.en.trim()===''){$scope.errors.en=`Englis name is required.`; }
+          if(Object.keys($scope.errors).length>0){ }
+          else
+          { 
+            let create={}
+            create.ar=$scope.subcate.ar;
+            create.en=$scope.subcate.en;
+            create.status=$scope.subcate.status;
+            create.priority=$scope.subcate.priority;        
+            create.id=Math.random()+window.performance.now(); 
+            $scope.subcates.push(create); //$scope.subcate={};
+          
+          }
+
+      }
+
+
+      $scope.SubcateEdit = function(index)
+      {
+          $scope.errors={};
+          $scope.subcate={};
+          $scope.mode='edit';
+          const row = $scope.subcates[index];
+          $scope.subcate.id=row.id;
+          $scope.subcate.ar=row.ar;
+          $scope.subcate.en=row.en;
+          $scope.subcate.status=row.status;
+          $scope.subcate.priority=row.priority;
+         
+            
+      }
+
+
+      $scope.SubcateUpdate = function()
+      {
+          $scope.errors={};
+          if(!$scope.subcate.status){$scope.errors.status=`Status is required.`; }
+          if(!$scope.subcate.priority){$scope.errors.priority=`Priority name is required.`; }
+          if(!$scope.subcate.ar||$scope.subcate.ar.trim()===''){$scope.errors.ar=`Arabic name is required.`; }
+          if(!$scope.subcate.en||$scope.subcate.en.trim()===''){$scope.errors.en=`Englis name is required.`; }
+          if(!$scope.subcate.id||$scope.subcates.findIndex(row =>row.id==$scope.subcate.id)==-1){ $scope.errors.idn=`Id is not exists`; alert($scope.errors.id); }
+       
+          //alert(JSON.stringify($scope.subcate));
+
+          if(Object.keys($scope.errors).length>0){ }
+          else
+          { 
+
+              const index =  $scope.subcates.findIndex(row =>row.id==$scope.subcate.id);
+              
+              //$scope.subcates[index] = $scope.subcate  ;
+              $scope.subcates[index].id=$scope.subcate.id;
+              $scope.subcates[index].ar=$scope.subcate.ar;
+              $scope.subcates[index].en=$scope.subcate.en;
+              $scope.subcates[index].status=$scope.subcate.status;
+              $scope.subcates[index].priority=$scope.subcate.priority;
+              $scope.errors={}; $scope.subcate={}; $scope.mode='create';
+
+          }
+
+      }
+      
+      $scope.SubcateEditCancel = function(index)
+      {
+          $scope.subcate={};
+          $scope.mode='create';
+          
+      }
+
+      $scope.SubcateDel = function(index)
+      {
+
+        let row = $scope.subcates[index];
+        
+        if(confirm(`Are you sure you want to delete sub category ?`))
+        //if(confirm(`Do you want to delete (${row.id}) Arabic:${row.ar},English:${row.en} Subcategory.`))
+        {
+
+            $scope.subcates.splice(index,1);
+            // $(`#tr-${index}`).children('td, th')
+            //       .animate({ padding: 0 })
+            //       .wrapInner('<div />')
+            //       .children()
+            //       .slideUp(function(){
+            //         $(this).closest('tr').remove();
+            //         setTimeout(function(){ $scope.subcates.splice(1,index); 
+            //       },1000);
+            // });
+
+        }
+        
+        
+
+
+      }
+    
+    });
+  </script>
+  
+            
+<%- include ../layout/footer %> 

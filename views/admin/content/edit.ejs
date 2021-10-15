@@ -1,0 +1,229 @@
+
+<%- include ../layout/header %> 
+                        
+
+    <!-- Middle Content Start -->
+    
+    <div class="vd_content-wrapper">
+        <div class="vd_container">
+          <div class="vd_content clearfix">
+            <div class="vd_head-section clearfix">
+              <div class="vd_panel-header">
+                <ul class="breadcrumb">
+                  <li><a href="/admin">Dashboard</a> </li>
+                  <li class="active">Content Edit</li>
+                </ul>
+   
+              </div>
+            </div>
+            <!-- vd_head-section -->
+            
+            <div class="vd_title-section clearfix">
+              <div class="vd_panel-header">
+                <h1>Edit Content</h1>
+                <!-- <small class="subtitle">Default dashboard for multipurpose demonstration</small> -->
+                <div class="vd_panel-menu  hidden-xs">
+    <!-- menu --> 
+  </div>
+  
+  
+  
+  <!-- vd_panel-menu --> 
+              </div>
+              <!-- vd_panel-header --> 
+            </div>
+            <!-- vd_title-section -->
+            
+  
+  
+  
+            
+            <!-- Begin AlertMgs -->
+  
+<%
+var flash = getMessages();
+if(flash.info){ %>
+
+  
+  <div class="alert alert-info"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+    <strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+  </div>
+
+<% }else if(flash.error){ %>
+
+  <div class="alert alert-danger"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+    <strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a> 
+  </div>
+
+<% }else if(flash.success){ %>
+
+  <div class="alert alert-success"> 
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+    <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+    <strong>Success : </strong>  
+    <a href="#" class="alert-link"><%= flash.success %></a>. 
+  </div>
+
+<% } %>
+<!-- Begin AlertMgs -->
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+            <!-- Begin Content -->
+  
+              <div class="vd_content-section clearfix">
+              <div class="panel widget light-widget">
+                <div class="panel-heading no-title"> </div>
+                <div class="panel-body">
+                  <h2 class="mgbt-xs-20">Edit Content Form</h2>
+
+
+                    
+
+
+
+                  <form action="/admin/content/update" method="POST" enctype="multipart/form-data" class="form-horizontal"  role="form" id="register-form" novalidate="novalidate">
+                    <div class="alert alert-danger vd_hidden">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="icon-cross"></i></button>
+                      <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span><strong>Oh snap!</strong> Change a few things up and try submitting again. </div>
+                    <div class="alert alert-success vd_hidden">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="icon-cross"></i></button>
+                      <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span><strong>Well done!</strong>. </div>
+                    
+                      <!--   
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <label class="control-label  col-sm-2">Arabic Name <span class="vd_red">*</span></label>
+                          <% if(flash.ar_name_err){ %>&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:red;"><%= flash.ar_name_err %></small>  <% } %>
+                          <div id="first-name-input-wrapper" class="controls col-sm-9">
+                            <input name="ar_name" value="<%if(flash.ar_name){%><%=flash.ar_name%><%}%>" type="text" placeholder="Arabic content name" class="width-60 required"  id="ArNameInput" required="">
+                          </div>
+                        </div>
+                      </div>
+                       -->
+                      
+                       <% if(flash.id_err){ %> <small style="color:red;"><%=flash.id_err%></small>  <% } %>
+                       <input name="id" value="<%if(content.id){%><%=content.id%><%}%>" type="hidden">
+                      
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <label class="control-label  col-sm-2">Name <span class="vd_red">*</span></label>
+                          <div id="first-name-input-wrapper" class="controls col-sm-9">
+                            <input disabled name="name" value="<%if(content.name){%><%=content.name%><%}%>" type="text" placeholder="Content name" class="width-60 required"  id="EnNameInput" required="">
+                          </div>
+                        </div>
+                      </div>
+  
+  
+  
+  
+  
+                      <!-- 
+                    <div class="form-group">
+                        <div class="col-md-12">
+                          <label class="control-label  col-sm-2">Arabic Text <span class="vd_red">*</span></label>
+                          <div id="first-name-input-wrapper" class="controls col-sm-6">
+                            <% if(flash.ar_text_err){ %> <small style="color:red;"><%=flash.ar_text_err%></small>  <% } %>
+                            <textarea name="ar_text" id="ArtextTextarea"  placeholder="Arabic Content Text" rows="5" class="width-100 required"  ><%if(flash.ar_text){%><%= flash.ar_text%><%}%></textarea>
+                          </div>
+                        </div>
+                      </div>
+                     -->
+                     
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <label class="control-label  col-sm-2">Text <span class="vd_red">*</span></label>
+                          <div id="first-name-input-wrapper" class="controls col-sm-6">
+                            <% if(flash.text_err){ %> <small style="color:red;"><%=flash.text_err%></small>  <% } %>
+                            <textarea name="text" id="EntextTextarea"  placeholder="Content Text" rows="10" class="width-100 required"  ><%if(content.text){%><%= content.text%><%}%></textarea>
+                          </div>
+                        </div>
+                      </div>
+    
+    
+    
+    
+                      <!--     
+                      <div class="form-group">
+                        <div class="col-md-12">
+                          <label class="control-label col-sm-2">Status<span class="vd_red">*</span></label>
+                          <div id="email-input-wrapper" class="controls col-sm-6">
+                            <% if(flash.status_err){ %> <small style="color:red;"><%= flash.status_err %></small>  <% } %>
+                            <select name="status" id="StatusSelect" >
+                              <option value="" >Select Status</option>
+                              <option <% if(flash.status && flash.status=='1'){ %> selected="true" <% } %> value="1" >Active</option>
+                              <option <% if(flash.status && flash.status=='0'){ %> selected="true" <% } %> value="0" >Deactive</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div> 
+                      -->
+  
+  
+  
+                    <div id="vd_login-error" class="alert alert-danger hidden"><i class="fa fa-exclamation-circle fa-fw"></i> Please fill the necessary field </div>
+                    <div class="form-group">
+                      <div class="col-sm-2"></div>
+                      
+                      
+                      <div class="col-md-6 mgbt-xs-10 mgtp-20">
+                        
+  
+                        <div class="mgtp-10">
+                          <button class="btn vd_bg-green vd_white" type="submit" id="submit-register">Update</button>
+                          <a href="/admin/content/list" class="btn vd_bg-green vd_white" >Cancel</a>
+                        </div>
+                      </div> 
+  
+  
+                      <div class="col-md-12 mgbt-xs-5"> </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+  
+          
+  
+            <!-- End Content -->
+  
+  
+  
+  
+  
+         
+            
+          </div>
+          <!-- .vd_content --> 
+        </div>
+        <!-- .vd_container --> 
+      </div>
+      <!-- .vd_content-wrapper --> 
+      
+      <!-- Middle Content End --> 
+      
+    </div>
+    <!-- .container --> 
+  </div>
+  <!-- .content -->
+  
+  
+  
+  
+      
+
+<%- include ../layout/footer %> 
+                        

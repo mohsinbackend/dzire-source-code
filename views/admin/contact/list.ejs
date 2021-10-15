@@ -1,0 +1,198 @@
+<%- include ../layout/header %>
+
+
+
+<!-- Middle Content Start -->
+<div class="vd_content-wrapper">
+  <div class="vd_container">
+    <div class="vd_content clearfix">
+      <div class="vd_head-section clearfix">
+        <div class="vd_panel-header">
+          <ul class="breadcrumb">
+            <li><a href="/admin">Dashboard</a> </li>
+            <li class="active">Messages List</li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- vd_head-section -->
+
+      <div class="vd_title-section clearfix">
+        <div class="vd_panel-header">
+          <h1>Messages List</h1>
+          <div class="vd_panel-menu  hidden-xs">
+          </div>
+
+
+
+          <!-- vd_panel-menu -->
+        </div>
+        <!-- vd_panel-header -->
+      </div>
+      <!-- vd_title-section -->
+
+
+
+
+
+      <!-- Begin AlertMgs -->
+
+      <%
+var errors={};            
+var messages = getMessages();
+if(messages.errors){ errors=messages.errors; }
+if(messages.info){ %>
+
+
+      <div class="alert alert-info">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+        <strong>Info : </strong> <a href="#" class="alert-link"><%= messages.info %></a>
+      </div>
+
+      <% }else if(messages.error){ %>
+
+      <div class="alert alert-danger">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+        <strong>Error :</strong> <a href="#" class="alert-link"><%= messages.error %></a>
+      </div>
+
+      <% }else if(messages.success){ %>
+
+      <div class="alert alert-success">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+        <strong>Success : </strong>
+        <a href="#" class="alert-link"><%= messages.success %></a>.
+      </div>
+
+      <% } %>
+      <!-- Begin AlertMgs -->
+
+
+
+
+
+      <!-- Begin Content -->
+
+      <div class="vd_content-section clearfix">
+        <div class="row">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel widget">
+                <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title">
+                    <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Messages List </h3>
+                </div>
+                <div class="panel-body  table-responsive">
+                  <table id="myTable" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>User Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Mange</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <% contacts.forEach( contact => { %>
+                      <tr id='<%= contact.id %>'>
+                        <td><%= contact.id %></td>
+                        <td><%= contact.user_id %></td>
+                        <td><%= contact.name %></td>
+                        <td><%= contact.email %></td>
+                        <td><%= contact.phone %></td>
+                        <td><details><summary>Message</summary><p><%= contact.text %></p></details></td>
+                        <td class="menu-action">
+                          
+                            <!-- 
+                            <a href="/admin/contactus/view/<%= contact.id %>" data-original-title="view" data-toggle="tooltip" data-placement="top"
+                            class="btn menu-icon vd_bg-green">
+                            <i class="fa fa-eye"></i> </a>
+                             -->
+
+                            <a data-original-title="delete"
+                            onclick="deleteRow('<%= contact.id %>','<%= contact.name %>')" data-toggle="tooltip"
+                            data-placement="top" class="btn menu-icon vd_bg-red"> <i class="fa fa-times"></i> </a>
+                        
+                          </td>
+                      
+                      </tr>
+                      <% }) %>
+
+
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Panel Widget -->
+            </div>
+            <!-- col-md-12 -->
+          </div>
+
+
+
+
+        </div>
+        <!-- row -->
+
+      </div>
+
+
+      <!-- End Content -->
+
+    </div>
+    <!-- .vd_content -->
+  </div>
+  <!-- .vd_container -->
+</div>
+<!-- .vd_content-wrapper -->
+
+<!-- Middle Content End -->
+
+</div>
+<!-- .container -->
+</div>
+<!-- .content -->
+
+
+<%- include ../layout/footer %>
+<script>
+  $(document).ready(function () {
+    $('#myTable').DataTable({ "pagingType": "full_numbers"});
+  });
+  function deleteRow(id, name) {
+    swal({
+      title: `Are you sure you want to Delete ${name}?`,
+      text: "Once deleted, you will not be able to recover this Data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          fetch(`/admin/contactus/delete/` + id, {
+            method: 'DELETE',
+            headers: { 'content-type': 'application/json' },
+          }).then((success) => {
+            let row = document.getElementById(id);
+            swal(`Contact Info Has Deleted Successfully!`, {
+              icon: "success",
+            });
+            row.remove();
+          }).catch((err) => {
+            console.log(err.message)
+          })
+        }
+      });
+  };
+
+</script>

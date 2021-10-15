@@ -1,0 +1,250 @@
+<%- include ../layout/header %>
+
+
+
+<!-- Middle Content Start -->
+<div class="vd_content-wrapper">
+  <div class="vd_container">
+    <div class="vd_content clearfix">
+      <div class="vd_head-section clearfix">
+        <div class="vd_panel-header">
+          <ul class="breadcrumb">
+            <li><a href="/admin">Dashboard</a> </li>
+            <li class="active">Items List</li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- vd_head-section -->
+
+      <div class="vd_title-section clearfix">
+        <div class="vd_panel-header">
+          <h1>Items List</h1>
+          <div class="vd_panel-menu  hidden-xs">
+
+            <!-- menu -->
+          </div>
+
+
+
+          <!-- vd_panel-menu -->
+        </div>
+        <!-- vd_panel-header -->
+      </div>
+      <!-- vd_title-section -->
+
+
+
+
+
+      <!-- Begin AlertMgs -->
+
+      <%
+var flash = getMessages();
+if(flash.info){ %>
+
+
+      <div class="alert alert-info">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+        <strong>Info : </strong> <a href="#" class="alert-link"><%= flash.info %></a>
+      </div>
+
+      <% }else if(flash.error){ %>
+
+      <div class="alert alert-danger">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+        <strong>Error :</strong> <a href="#" class="alert-link"><%= flash.error %></a>
+      </div>
+
+      <% }else if(flash.success){ %>
+
+      <div class="alert alert-success">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+        <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+        <strong>Success : </strong>
+        <a href="#" class="alert-link"><%= flash.success %></a>.
+      </div>
+
+      <% } %>
+      <!-- Begin AlertMgs -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Begin Content -->
+
+      <div class="vd_content-section clearfix">
+        <div class="row">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel widget">
+                <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title">
+                    <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span> Items List </h3>
+                </div>
+                <div class="panel-body  table-responsive">
+                  <table id="myTable" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Owner</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <% listings.forEach( listing => { %>
+                      <tr id="tr-<%= listing.id %>">
+                        <td><%= listing.id %></td>
+                        <td><img src="<%= listing.image_url %>" height="42" width="42"></td>
+                        <td><%= listing.name %></td>
+                        <td><%= listing.category %></td>
+                        <td><%= listing.owner %></td>
+                        <td class="center">
+                          <% if(listing.status=='1') { %>
+                          <span class="label label-success">Active</span>
+                          <% } else { %>
+                          <span class="label label-danger">Deactive</span>
+                          <% } %>
+                        </td>
+                        <td class="menu-action">
+ 
+                          
+                          <a href="/admin/listing/view/<%= listing.id %>" class="btn menu-icon vd_bg-green"><i class="fa fa-eye"></i> </a> 
+                 
+                          <!-- 
+                            <a href="/admin/listing/edit/<%= listing.id %>" class="btn menu-icon vd_bg-yellow"><i class="fa fa-pencil"></i> </a> 
+                          -->
+                          <a data-original-title="delete"
+                            onclick="deleteRow('<%= listing.id %>','<%= listing.name %>','<%= listing.image_url %>')" data-toggle="tooltip"
+                            data-placement="top" class="btn menu-icon vd_bg-red"> <i class="fa fa-times"></i> 
+                          </a>
+                        </td>
+                      </tr>
+                      <% }) %>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Panel Widget -->
+            </div>
+            <!-- col-md-12 -->
+          </div>
+
+
+
+
+        </div>
+        <!-- row -->
+
+      </div>
+
+
+      <!-- End Content -->
+
+    </div>
+    <!-- .vd_content -->
+  </div>
+  <!-- .vd_container -->
+</div>
+<!-- .vd_content-wrapper -->
+
+<!-- Middle Content End -->
+
+</div>
+<!-- .container -->
+</div>
+<!-- .content -->
+
+
+<%- include ../layout/footer %>
+
+<script>
+  $(document).ready(function () {
+    $('#myTable').DataTable({ "pagingType": "full_numbers","order": [[ 0, "desc" ]]});
+  });
+  
+  function deleteRow(id,name,image) 
+  {
+
+    swal({
+      buttons: true,
+      icon:'warning',
+      imageUrl: image,
+      dangerMode: true,
+      title: `Are you sure you want to Delete ${name}?`,
+      text: "Once deleted, you will not be able to recover this Data!",
+     }).then((willDelete)=>{
+       
+      if(willDelete) 
+      {
+          fetch(`/admin/listing/delete`,{
+            method: 'DELETE'
+            ,headers: { 'content-type': 'application/json' }
+            ,body: JSON.stringify({listing_id:id})
+          }).then((respons) =>respons.json())
+            
+          .then(respons => {
+ 
+            if(!respons.status){
+              window.location.reload(false); 
+
+              // alert(respons.message);
+            }
+            else if(respons.status==true){ 
+              $(`#tr-${id}`).children('td, th')
+                    .animate({ padding: 0 })
+                    .wrapInner('<div />')
+                    .children()
+                    .slideUp(function(){
+                    $(this).closest('tr').remove();
+                      
+                });
+            }
+            else
+            {
+                $(`#tr-${id}`).children('td, th')
+                    .animate({ padding: 0 })
+                    .wrapInner('<div />')
+                    .children()
+                    .slideUp(function(){
+                    $(this).closest('tr').remove();
+                      
+                });
+
+            }
+
+            // let row = document.getElementById(id);
+            // swal(`Listing ${name} Has Deleted Successfully!`, {
+            //   icon: "success",
+            // });
+            // row.remove();
+          
+          }).catch((err) => { console.log(err.message) })
+        }
+
+      });
+
+  };
+
+</script>

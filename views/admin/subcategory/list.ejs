@@ -1,0 +1,173 @@
+<%- include ../layout/header %>
+
+
+
+<!-- Middle Content Start -->
+<div class="vd_content-wrapper">
+  <div class="vd_container">
+    <div class="vd_content clearfix">
+      <div class="vd_head-section clearfix">
+        <div class="vd_panel-header">
+          <ul class="breadcrumb">
+            <li><a href="index.php">Dashboard</a> </li>
+            <li class="active">Listing Subcategory</li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- vd_head-section -->
+
+      <div class="vd_title-section clearfix">
+        <div class="vd_panel-header">
+          <h1>Listing Subcategory</h1>
+          <div class="vd_panel-menu  hidden-xs">
+
+            <!-- menu -->
+          </div>
+
+
+
+          <!-- vd_panel-menu -->
+        </div>
+        <!-- vd_panel-header -->
+      </div>
+      <!-- vd_title-section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Begin Content -->
+
+      <div class="vd_content-section clearfix">
+        <div class="row">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel widget">
+                <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title">
+                    <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span> Listing Subcategories </h3>
+                </div>
+                <div class="panel-body  table-responsive">
+                  <table id="myTable" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Subcategory</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <% subcategories.forEach( subcategory => { %>
+                      <tr id='<%= subcategory.id %>'>
+                        <td><%= subcategory.id %></td>
+                        <td><%= subcategory.category %></td>
+                        <td><%= subcategory.name %></td>
+                        <td class="center">
+                          <% if(subcategory.status=='1') { %>
+                          <span class="label label-success">Active</span>
+                          <% } else { %>
+                          <span class="label label-danger">Deactive</span>
+                          <% } %>
+                        </td>
+                        
+                        <td class="menu-action">
+                          
+                          <a href="/admin/subcategory/view/<%= subcategory.id %>" data-original-title="view" data-toggle="tooltip" data-placement="top"
+                            class="btn menu-icon vd_bg-green">
+                            <i class="fa fa-eye"></i> </a>
+
+                          <a href="/admin/subcategory/edit/<%= subcategory.id %>"  data-original-title="edit" data-toggle="tooltip"
+                            data-placement="top" class="btn menu-icon vd_bg-yellow"> <i class="fa fa-pencil"></i> </a>
+                          
+                            <a data-original-title="delete"
+                            onclick="deleteRow('<%= subcategory.id %>','<%= subcategory.en_name %>')"
+                            data-toggle="tooltip" data-placement="top" class="btn menu-icon vd_bg-red"> <i
+                              class="fa fa-times"></i> </a>
+                      </td>
+                      
+                      </tr>
+                      <% }) %>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Panel Widget -->
+            </div>
+            <!-- col-md-12 -->
+          </div>
+
+
+
+
+        </div>
+        <!-- row -->
+
+      </div>
+
+
+      <!-- End Content -->
+
+    </div>
+    <!-- .vd_content -->
+  </div>
+  <!-- .vd_container -->
+</div>
+<!-- .vd_content-wrapper -->
+
+<!-- Middle Content End -->
+
+</div>
+<!-- .container -->
+</div>
+<!-- .content -->
+
+
+<%- include ../layout/footer %>
+<script>
+  $(document).ready(function () {
+    $('#myTable').DataTable({ "pagingType": "full_numbers"});
+  });
+  function deleteRow(id, subcategory) {
+
+    swal({
+      title: `Are you sure you want to Delete ${subcategory}?`,
+      text: "Once deleted, you will not be able to recover this Data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          fetch(`/admin/subcategory/delete/` + id, {
+            method: 'DELETE',
+            headers: { 'content-type': 'application/json' },
+          }).then((success) => {
+            let row = document.getElementById(id);
+            swal(`Subcategory ${name} Has Deleted Successfully!`, {
+              icon: "success",
+            });
+            row.remove();
+          }).catch((err) => {
+            console.log(err.message)
+          })
+        }
+      });
+  };
+
+</script>

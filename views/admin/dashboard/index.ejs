@@ -1,0 +1,640 @@
+
+<%- include ../layout/header %> 
+
+
+<!-- Middle Content Start -->
+    
+    <div class="vd_content-wrapper">
+        <div class="vd_container">
+          <div class="vd_content clearfix">
+            <div class="vd_head-section clearfix">
+              <div class="vd_panel-header">
+                <ul class="breadcrumb">
+                  <li class="active">Dashboard</li>
+                </ul>
+       
+   
+              </div>
+            </div>
+            <!-- vd_head-section -->
+            
+            <div class="vd_title-section clearfix">
+              <div class="vd_panel-header">
+                <h1>Dashboard</h1>
+              
+                <!-- <small class="subtitle">Default dashboard for multipurpose demonstration</small> -->
+                <div class="vd_panel-menu  hidden-xs">
+
+  </div>
+  
+  
+
+
+  
+  <!-- vd_panel-menu --> 
+              </div>
+              <!-- vd_panel-header --> 
+            </div>
+            <!-- vd_title-section -->
+            
+  
+  
+            
+            <%
+            var messages = getMessages();
+            if(messages.info){ %>
+           
+              
+              <div class="alert alert-info"> 
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+                <span class="vd_alert-icon"><i class="fa fa-info-circle vd_blue"></i></span>
+                <strong>Info : </strong> <a href="#" class="alert-link"><%= messages.info %></a>
+              </div>
+          
+            <% }else if(messages.error){ %>
+           
+              <div class="alert alert-danger"> 
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+                <span class="vd_alert-icon"><i class="fa fa-exclamation-circle vd_red"></i></span>
+                <strong>Error :</strong> <a href="#" class="alert-link"><%= messages.error %></a> 
+              </div>
+          
+            <% }else if(messages.success){ %>
+            
+              <div class="alert alert-success"> 
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"><i class="icon-cross"></i></button>
+                <span class="vd_alert-icon"><i class="fa fa-check-circle vd_green"></i></span>
+                <strong>Success : </strong>  
+                <a href="#" class="alert-link"><%= messages.success %></a>. 
+              </div>
+          
+            <% } %>
+  
+  
+  
+              
+  
+  
+  
+  
+  
+  
+  
+            <!-- Begin Content -->
+  
+            <div class="vd_content-section clearfix">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 mgbt-sm-15">
+                  <div class="vd_status-widget vd_bg-green widget">
+      <div class="vd_panel-menu">
+    <div data-action="refresh" data-original-title="Refresh" data-rel="tooltip" class=" menu entypo-icon smaller-font"> <i class="icon-cycle"></i> </div>
+  </div>
+  <!-- vd_panel-menu --> 
+                                   
+      <a class="panel-body" href="/admin/user/list">
+              <div class="clearfix">
+                  <span class="menu-icon">
+                      <i class="icon-users"></i>
+                  </span>
+                  <span class="menu-value"><%=statistics.users%></span>  
+              </div>   
+              <div class="menu-text clearfix">Total Users</div>                                                               
+      </a>        
+  </div>                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 mgbt-sm-15">
+                  <div class="vd_status-widget vd_bg-red  widget">
+      <div class="vd_panel-menu">
+    <div data-action="refresh" data-original-title="Refresh" data-rel="tooltip" class=" menu entypo-icon smaller-font"> <i class="icon-cycle"></i> </div>
+  </div>
+  <!-- vd_panel-menu --> 
+                                   
+      <a class="panel-body" href="/admin/listing/list">                                
+          <div class="clearfix">
+              <span class="menu-icon">
+                  <i class="icon-list"></i>
+              </span>
+              <span class="menu-value">
+                  <%=statistics.listings%>
+              </span>  
+          </div>   
+          <div class="menu-text clearfix">
+            Total Brands
+          </div>  
+       </a>                                                                
+  </div>                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 mgbt-xs-15">
+                  <div class="vd_status-widget vd_bg-blue widget">
+      <div class="vd_panel-menu">
+    <div data-action="refresh" data-original-title="Refresh" data-rel="tooltip" class=" menu entypo-icon smaller-font"> <i class="icon-cycle"></i> </div>
+  </div>
+  <!-- vd_panel-menu --> 
+                                    
+    <a class="panel-body" href="/admin/review/list">                                  
+          <div class="clearfix">
+              <span class="menu-icon">
+                  <i class="fa fa-comments"></i>
+              </span>
+              <span class="menu-value">
+                  <%=statistics.reviews%>
+              </span>  
+          </div>   
+          <div class="menu-text clearfix">
+              Total Reviews
+          </div>
+       </a>                                                                  
+  </div>               </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 mgbt-xs-15">
+                  <div class="vd_status-widget vd_bg-yellow widget">
+      <div class="vd_panel-menu">
+    <div data-action="refresh" data-original-title="Refresh" data-rel="tooltip" class=" menu entypo-icon smaller-font"> <i class="icon-cycle"></i> </div>
+  </div>
+  <!-- vd_panel-menu --> 
+                                    
+      <a class="panel-body" href="/admin/category/list">                                
+          <div class="clearfix">
+              <span class="menu-icon">
+                  <i class="icon-users"></i>
+              </span>
+              <span class="menu-value"><%=statistics.categories%></span>  
+          </div>   
+          <div class="menu-text clearfix">Total Categories</div>  
+       </a>                                                                
+  </div>                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 mgbt-md-20 mgbt-lg-0">
+                  <div class="panel vd_interactive-widget light-widget widget">
+    <div class="panel-body-list">
+      <div class="vd_panel-menu">
+    <div data-action="refresh" class="menu entypo-icon smaller-font" data-placement="bottom" data-toggle="tooltip" data-original-title="Refresh"> <i class="icon-cycle"></i> </div>
+    <div class="menu entypo-icon smaller-font" data-placement="bottom" data-toggle="tooltip" data-original-title="Config">
+      <div data-action="click-trigger" class="menu-trigger"> <i class="icon-cog"></i> </div>
+      <div class="vd_mega-menu-content  width-xs-2  left-xs" data-action="click-target" style="display: none;">
+        <div class="child-menu">
+          <div class="content-list content-menu">
+            <ul class="list-wrapper pd-lr-10">
+              <li> <a href="#"> <div class="menu-icon"><i class=" fa fa-user"></i></div> <div class="menu-text">Panel Menu</div> </a> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="menu entypo-icon" data-placement="bottom" data-toggle="tooltip" data-original-title="Close" data-action="close"> <i class="icon-cross"></i> </div>
+  </div>
+  <!-- vd_panel-menu --> 
+   
+      
+      <div class="pd-20">
+        <h5 class="mgbt-xs-20 mgtp-20"><span class="menu-icon append-icon"><i class="icon-graph"></i></span> <strong>Android VS IOS</strong> </h5>
+        <div id="revenue-line-chart" style="height: 255px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 590px; height: 255px;" width="590" height="255"></canvas><div class="flot-text" style="position: absolute; inset: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; inset: 0px; display: block;"><div style="position: absolute; max-width: 84px; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 241px; left: 36px; text-align: center;">2</div><div style="position: absolute; max-width: 84px; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 241px; left: 135px; text-align: center;">4</div><div style="position: absolute; max-width: 84px; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 241px; left: 234px; text-align: center;">6</div><div style="position: absolute; max-width: 84px; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 241px; left: 333px; text-align: center;">8</div><div style="position: absolute; max-width: 84px; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 241px; left: 429px; text-align: center;">10</div><div style="position: absolute; max-width: 84px; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 241px; left: 528px; text-align: center;">12</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; inset: 0px; display: block;"><div style="position: absolute; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 215px; left: 13px; text-align: right;">0</div><div style="position: absolute; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 143px; left: 1px; text-align: right;">250</div><div style="position: absolute; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 72px; left: 1px; text-align: right;">500</div><div style="position: absolute; font: small-caps bold 10px / 13px sans-serif; color: rgb(111, 123, 138); top: 1px; left: 1px; text-align: right;">750</div></div></div><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 590px; height: 255px;" width="590" height="255"></canvas></div>
+      </div>
+      <div class="row mgbt-xs-0">
+        <div class="col-sm-4 mgbt-xs-15 mgbt-sm-0">
+          <div class="item-left pd-15">
+            <div id="revenue-donut-chart" style="height: 100px; padding: 0px; position: relative;">
+              <canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 174px; height: 100px;" width="174" height="100"></canvas>
+              <canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 174px; height: 100px;" width="174" height="100"></canvas>
+              <div class="legend">
+                <div style="position: absolute; width: 53px; height: 46px; top: 5px; right: 5px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div>
+                <!--                 
+                <table style="position:absolute;top:5px;right:5px;;font-size:smaller;color:#545454">
+                  <tbody>
+
+                      
+                      <tr>
+                        <td class="legendColorBox">
+                          <div style="border:1px solid #ccc;padding:1px">
+                            <div style="width:4px;height:0;border:5px solid rgb(248,93,44);overflow:hidden"></div>
+                          </div>
+                        </td><td class="legendLabel">IOS</td>
+                      </tr>
+                       
+                      <tr>
+                          <td class="legendColorBox">
+                            <div style="border:1px solid #ccc;padding:1px">
+                            <div style="width:4px;height:0;border:5px solid rgb(31,174,102);overflow:hidden"></div>
+                          </div>
+                          </td>
+                          <td class="legendLabel">Android</td>
+                      </tr>
+                          
+
+                        </tbody>
+                </table>
+               -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="item-right pd-15">
+            <div id="revenue-bar-chart" style="height: 100px; padding: 0px; position: relative;"> <canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 395px; height: 100px;" width="395" height="100"></canvas><div class="flot-text" style="position: absolute; inset: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; inset: 0px; display: block;"><div style="position: absolute; max-width: 32px; top: 77px; left: 17px; text-align: center;" class="flot-tick-label tickLabel">Jan</div><div style="position: absolute; max-width: 32px; top: 77px; left: 47px; text-align: center;" class="flot-tick-label tickLabel">Feb</div><div style="position: absolute; max-width: 32px; top: 77px; left: 78px; text-align: center;" class="flot-tick-label tickLabel">Mar</div><div style="position: absolute; max-width: 32px; top: 77px; left: 110px; text-align: center;" class="flot-tick-label tickLabel">Apr</div><div style="position: absolute; max-width: 32px; top: 77px; left: 140px; text-align: center;" class="flot-tick-label tickLabel">May</div><div style="position: absolute; max-width: 32px; top: 77px; left: 174px; text-align: center;" class="flot-tick-label tickLabel">Jun</div><div style="position: absolute; max-width: 32px; top: 77px; left: 207px; text-align: center;" class="flot-tick-label tickLabel">Jul</div><div style="position: absolute; max-width: 32px; top: 77px; left: 235px; text-align: center;" class="flot-tick-label tickLabel">Aug</div><div style="position: absolute; max-width: 32px; top: 77px; left: 266px; text-align: center;" class="flot-tick-label tickLabel">Sep</div><div style="position: absolute; max-width: 32px; top: 77px; left: 299px; text-align: center;" class="flot-tick-label tickLabel">Oct</div><div style="position: absolute; max-width: 32px; top: 77px; left: 329px; text-align: center;" class="flot-tick-label tickLabel">Nov</div><div style="position: absolute; max-width: 32px; top: 77px; left: 360px; text-align: center;" class="flot-tick-label tickLabel">Dec</div></div></div><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 395px; height: 100px;" width="395" height="100"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Panel Widget -->               </div>
+                <!-- col-md-8 -->
+                <div class="col-md-4">
+          <div class="panel vd_transaction-widget light-widget widget">
+    <div class="panel-body">
+      <div class="vd_panel-menu">
+    <div data-action="refresh" class="menu entypo-icon smaller-font" data-placement="bottom" data-toggle="tooltip" data-original-title="Refresh"> <i class="icon-cycle"></i> </div>
+    <div class="menu entypo-icon smaller-font" data-placement="bottom" data-toggle="tooltip" data-original-title="Config">
+      <div data-action="click-trigger" class="menu-trigger"> <i class="icon-cog"></i> </div>
+      <div class="vd_mega-menu-content  width-xs-2  left-xs" data-action="click-target" style="display: none;">
+        <div class="child-menu">
+          <div class="content-list content-menu">
+            <ul class="list-wrapper pd-lr-10">
+              <li> <a href="#"> <div class="menu-icon"><i class=" fa fa-user"></i></div> <div class="menu-text">Panel Menu</div> </a> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="menu entypo-icon" data-placement="bottom" data-toggle="tooltip" data-original-title="Close" data-action="close"> <i class="icon-cross"></i> </div>
+  </div>
+  <!-- vd_panel-menu --> 
+      <h5 class="mgbt-xs-20 mgtp-20">
+        <span class="menu-icon append-icon"> <i class="icon-pie"></i> </span> 
+        <strong>Categories Wise Brands</strong>
+      </h5>
+      <div id="pie-chart" class="pie-chart" style="height: 388px; padding: 0px; position: relative;">
+        <canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 249px; height: 388px;" width="249" height="388"></canvas>
+        <canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 249px; height: 388px;" width="249" height="388"></canvas>
+        <div class="legend">
+          <div style="position: absolute; width: 55px; height: 138px; top: 5px; right: 5px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div>
+        </div>
+        
+        <!-- 
+        <span class="pieLabel" id="pieLabel0" style="position: absolute; top: 115px; left: 144px;">
+        <div style="font-size:8pt; text-align:center; padding:2px; color:white;">IE<br>17%</div></span>
+        <span class="pieLabel" id="pieLabel1" style="position: absolute; top: 164px; left: 170.5px;">
+        <div style="font-size:8pt; text-align:center; padding:2px; color:white;">Safari<br>14%</div></span><span class="pieLabel" id="pieLabel2" style="position: absolute; top: 212px; left: 152px;"><div style="font-size:8pt; text-align:center; padding:2px; color:white;">Opera<br>14%</div></span>
+        <span class="pieLabel" id="pieLabel3" style="position: absolute; top: 228px; left: 82.5px;">
+        <div style="font-size:8pt; text-align:center; padding:2px; color:white;">Chrome<br>22%</div></span>
+        <span class="pieLabel" id="pieLabel4" style="position: absolute; top: 148px; left: 46.5px;">
+        <div style="font-size:8pt; text-align:center; padding:2px; color:white;">Firefox<br>29%</div></span>
+        <span class="pieLabel" id="pieLabel5" style="position: absolute; top: 108px; left: 98px;">
+        <div style="font-size:8pt; text-align:center; padding:2px; color:white;">Other<br>5%</div></span>
+        </div> -->
+      
+      <div class="vd_info br">
+        <h5 class="text-right font-semibold">
+          <strong> TOTAL LISTINGS (<%=statistics.listings%>)</strong>
+        </h5>
+      </div>
+    </div>
+  </div>
+                </div>
+                <!-- .col-md-4 --> 
+              </div>
+  
+              
+              
+              <!-- .row --> 
+            </div>
+  
+            <!-- End Content -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+         
+            
+          </div>
+          <!-- .vd_content --> 
+        </div>
+        <!-- .vd_container --> 
+      </div>
+      <!-- .vd_content-wrapper --> 
+      
+      <!-- Middle Content End --> 
+      
+    </div>
+    <!-- .container --> 
+  </div>
+  <!-- .content -->
+  
+
+
+<%- include ../layout/footer %> 
+
+
+<script type="text/javascript">
+  
+  
+    
+  $(window).load(function () 
+  {
+
+
+    
+  
+/* REVENUE DONUT CHART */	
+    var data2 = [],
+			series = 3;
+	  
+    <% os.forEach(function(row){ %>
+      data2.push({label:"<%= row.name %>",data:<%= row.percentage %> });
+    <% }); %>
+
+		var revenue_donut_chart = $("#revenue-donut-chart");
+		
+		$("#revenue-donut-chart").bind("plotclick", function (event, pos, item) 
+    {
+			if (item) 
+      {
+				$("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
+				plot.highlight(item.series, item.datapoint);
+			}
+		});
+		
+    $.plot(revenue_donut_chart, data2, 
+    {
+			series: 
+      {
+				pie: { innerRadius: 0.4, show: true }
+			}
+			,grid: { hoverable:true ,clickable:true }
+			,colors: ["#3d015b","#b19cd9"]				
+		
+    });
+  /* REVENUE DONUT CHART */
+
+
+
+    
+      	
+/* REVENUE BAR CHART */	
+    
+  var bar_chart_data=[];
+  
+  //var bar_chart_data = [ ["Jan", 10], ["Feb", 8], ["Mar", 4], ["Apr", 13], ["May", 17], ["Jun", 9], ["Jul", 10], ["Aug", 8], ["Sep", 4], ["Oct", 13], ["Nov", 17], ["Dec", 9] ];  
+  <% months.forEach(function(month){ %>
+    bar_chart_data.push([ "<%= month.name %>",<%= month.percentage %> ]);
+  <% }); %>
+   
+    var bar_chart = $.plot(
+    $("#revenue-bar-chart"), [{
+        data: bar_chart_data,
+    //color:"rgba(31,174,102, 0.8)",
+   color: "#3d015b", 
+        shadowSize: 0,
+        bars: {
+            show: true,
+            lineWidth: 0,
+            fill: true,
+            fillColor: 
+            {
+                colors: [{ opacity: 1 } ,{ opacity: 1 }]
+            }
+        }
+    }], {
+        series: {
+            bars: {
+                show: true,
+                barWidth: 0.9,
+      align: "center"
+            }
+        },
+        grid: {
+            show: true,
+            hoverable: true,
+            borderWidth: 0
+        },
+        yaxis: {
+            min: 0,
+            max: 20,
+    show: false
+        },
+  xaxis: {
+    mode: "categories",
+    tickLength: 0,
+    color: "#FFFFFF",				
+  }			
+    });
+
+    var previousPoint2 = null;
+   $("#revenue-bar-chart").bind("plothover", function (event, pos, item) 
+   {
+        $("#x").text(pos.x.toFixed(2));
+        $("#y").text(pos.y.toFixed(2));
+        if (item) {
+            if (previousPoint2 != item.dataIndex) {
+                previousPoint2 = item.dataIndex;
+                $("#tooltip").remove();
+                var x = item.datapoint[0] + 1,
+                    y = item.datapoint[1].toFixed(2);
+                showTooltip(item.pageX, item.pageY, 
+            "<p class='vd_bg-green'><strong class='mgr-10 mgl-10'>" + x + " - 2013 </strong></p>" +
+            "<div style='padding: 0 10px 10px;'>" +
+            "<div> Sales: <strong>"+ Math.round(y)*17  +"</strong></div>" +
+            "<div> Profit: <strong>$"+ Math.round(y)*280  +"</strong></div>" +
+            "</div>"										
+      );
+            }
+        }
+    });
+
+    $('#revenue-bar-chart').bind("mouseleave", function () {  $("#tooltip").remove(); });
+    /* REVENUE BAR CHART */	
+
+
+
+    
+      /* PIE CHART */
+      var pie_placeholder = $("#pie-chart");
+
+      var pie_data = [];
+     
+      <% pichart.forEach(function(row){ %>
+        pie_data.push({label:"<%= row.name %>",data:<%= row.percentage %> });
+      <% }); %>
+
+
+     
+
+      $.plot(pie_placeholder, pie_data, {
+        series: {
+          pie: { 
+            show: true,
+            label:{
+              show: false,
+              radius: .5,
+              formatter: labelFormatter,
+              background:{ opacity:0 }
+            },
+
+          }
+        },
+        grid: {
+          hoverable: true,
+          clickable: true
+        },
+        colors: ["#FCB660", "#ce91db", "#56A2CF", "#52D793", "#FC8660", "#CCCCCC"]
+      });
+
+      pie_placeholder.bind("plothover", function(event, pos, obj) {
+        if (!obj) {
+          return;
+        }
+        var percent = parseFloat(obj.series.percent).toFixed(2);
+        $("#hover").html("<span style='font-weight:bold; color:" + obj.series.color + "'>" + obj.series.label + " (" + percent + "%)</span>");
+      });
+
+      pie_placeholder.bind("plotclick", function(event, pos, obj) {
+        if (!obj) {
+          return;
+        }
+        percent = parseFloat(obj.series.percent).toFixed(2);
+        alert(""  + obj.series.label + ": " + percent + "%");
+      });
+
+      function labelFormatter(label, series) 
+      {
+        return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+      }
+      /* PIE CHART */
+
+
+
+
+
+    /* REVENUE LINE CHART */
+            var d2 = [ [1, 250],
+                [2, 150],
+                [3, 50],
+                [4, 200],
+                [5,50],
+                [6, 150],
+                [7, 150],
+                [8, 200],
+                [9, 100],
+                [10, 250],
+                [11,250],
+                [12, 200],
+                [13, 300]			
+    
+    ];
+        var d1 = [
+                [1, 650],
+                [2, 550],
+                [3, 450],
+                [4, 550],
+                [5, 350],
+                [6, 500],
+                [7, 600],
+                [8, 450],
+                [9, 300],
+                [10, 600],
+                [11, 400],
+                [12, 500],
+                [13, 700]					
+                
+    ];
+        var plot = $.plotAnimator($("#revenue-line-chart"), [
+                {  	label: "Revenue",
+                    data: d2, 	
+                    lines: {				
+                        fill: 0.4,
+                        lineWidth: 0,				
+                    },
+                    color:['#b19cd9']
+                },{ 
+                    data: d1, 
+                    animator: {steps: 60, duration: 1000, start:0}, 		
+                    lines: {lineWidth:2},	
+                    shadowSize:0,
+                    color: '#3d015b'
+                },{
+                    label: "Revenue",
+                    data: d1, 
+                    points: { show: true, fill: true, radius:6,fillColor:"#3d015b",lineWidth:3 },	
+                    color: '#fff',				
+                    shadowSize:0
+                },
+                {	label: "Cost",
+                    data: d2, 
+                    points: { show: true, fill: true, radius:6,fillColor:"#3d015b",lineWidth:3 },	
+                    color: '#fff',				
+                    shadowSize:0
+                }
+            ],{	xaxis: {
+            tickLength: 0,
+            tickDecimals: 0,
+            min:2,
+    
+                    font :{
+                        lineHeight: 13,
+                        style: "normal",
+                        weight: "bold",
+                        family: "sans-serif",
+                        variant: "small-caps",
+                        color: "#6F7B8A"
+                    }
+                },
+                yaxis: {
+                    ticks: 3,
+                    tickDecimals: 0,
+                    tickColor: "#f0f0f0",
+                    font :{
+                        lineHeight: 13,
+                        style: "normal",
+                        weight: "bold",
+                        family: "sans-serif",
+                        variant: "small-caps",
+                        color: "#6F7B8A"
+                    }
+                },
+                grid: {
+                    backgroundColor: { colors: [ "#fff", "#fff" ] },
+                    borderWidth:1,borderColor:"#f0f0f0",
+                    margin:0,
+                    minBorderMargin:0,							
+                    labelMargin:20,
+                    hoverable: true,
+                    clickable: true,
+                    mouseActiveRadius:6
+                },
+                legend: { show: false}
+            });
+    
+             $("#revenue-line-chart").UseTooltip();	
+            
+          /* REVENUE LINE CHART */
+              
+
+
+
+
+
+
+
+
+
+
+  
+  
+  });
+</script>
